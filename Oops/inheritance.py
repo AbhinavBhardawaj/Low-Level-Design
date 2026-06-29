@@ -1,59 +1,59 @@
 class Car:
 
     def __init__(self, brand: str, model: str) -> None:
-        self.brand: str = brand
-        self.model: str = model
-        self.isEngineOn: bool = False
-        self.currentSpeed: int = 0
+        self._brand = brand
+        self._model = model
+        self._isEngineOn: bool = False
+        self._currentSpeed: int = 0
 
     # Common methods for all cars.
     def startEngine(self) -> None:
-        self.isEngineOn = True
-        print(f"{self.brand} {self.model} : Engine started.")
+        self._isEngineOn = True
+        print(f"{self._brand} {self._model} : Engine started.")
 
     def stopEngine(self) -> None:
-        self.isEngineOn = False
-        self.currentSpeed = 0
-        print(f"{self.brand} {self.model} : Engine turned off.")
+        self._isEngineOn = False
+        self._currentSpeed = 0
+        print(f"{self._brand} {self._model} : Engine turned off.")
 
     def accelerate(self) -> None:
-        if not self.isEngineOn:
-            print(f"{self.brand} {self.model} : Cannot accelerate! Engine is off.")
+        if not self._isEngineOn:
+            print(f"{self._brand} {self._model} : Cannot accelerate! Engine is off.")
             return
 
-        self.currentSpeed += 20
-        print(f"{self.brand} {self.model} : Accelerating to {self.currentSpeed} km/h")
+        self._currentSpeed += 20
+        print(f"{self._brand} {self._model} : Accelerating to {self._currentSpeed} km/h")
 
     def brake(self) -> None:
-        self.currentSpeed -= 20
-        if self.currentSpeed < 0:
-            self.currentSpeed = 0
+        self._currentSpeed -= 20
+        if self._currentSpeed < 0:
+            self._currentSpeed = 0
 
-        print(f"{self.brand} {self.model} : Braking! Speed is now {self.currentSpeed} km/h")
+        print(f"{self._brand} {self._model} : Braking! Speed is now {self._currentSpeed} km/h")
 
 
 class ManualCar(Car):  # Inherits from Car
 
     def __init__(self, brand: str, model: str) -> None:
         super().__init__(brand, model)
-        self.currentGear: int = 0
+        self.__CurrentGear: int = 0
 
     # Specialized method for Manual Car
     def shiftGear(self, gear: int) -> None:
-        self.currentGear = gear
-        print(f"{self.brand} {self.model} : Shifted to gear {self.currentGear}")
+        self.__CurrentGear = gear
+        print(f"{self._brand} {self._model} : Shifted to gear {self.__CurrentGear}")
 
 
 class ElectricCar(Car):  # Inherits from Car
 
     def __init__(self, brand: str, model: str) -> None:
         super().__init__(brand, model)
-        self.batteryLevel: int = 100
+        self.__batteryLevel: int = 100
 
     # Specialized method for Electric Car
     def chargeBattery(self) -> None:
-        self.batteryLevel = 100
-        print(f"{self.brand} {self.model} : Battery fully charged!")
+        self.__batteryLevel = 100
+        print(f"{self._brand} {self._model} : Battery fully charged!")
 
 
 # Main Method
